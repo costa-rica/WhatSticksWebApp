@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% block title %} WSH Login {% endblock %}
+{% block main %}
+    <section class="LoginSection">
+        <div class="container">
+
+            <h2>Login Here</h2>
+
+            
+            <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <div class="form-elements">
+
+                        <div class="email-label">
+                            {{ form.email.label(class="") }}
+                        </div>
+                        <div class="email-input">
+                            {% if form.email.errors %}
+                            {{ form.email(class="wider_input_login") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.email(class="wider_input_login") }}
+                            {% endif %}
+                        </div>
+
+
+                        <div class="password-label">
+                            {{ form.password.label(class="") }}
+                        </div>
+                        <div class="password-input">
+                            {% if form.password.errors %}
+                            {{ form.password(class="") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.password(class="wider_input_login") }}
+                            {% endif %}
+                        </div>
+
+
+                    <div class="form-check">
+                        {{ form.remember(class="form-check-input") }}
+                        {{ form.remember.label(class="form-check-label") }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.submit(class="submit-button1") }}
+                        <small class="text-muted blacktext">
+                            <a href="{{ url_for('users.reset_password') }}">forgot password?</a>
+                        </small>
+                    </div>
+
+                    <div class='login_as_guest'>
+                        <a href="{{ url_for('users.login', email_entry='guest@what-sticks-health.com', pass_entry='test' ) }}">
+                            Login as guest</a>
+                    </div>
+                    
+
+                </div>
+
+
+
+
+            </form>
+            
+            
+        </div>
+    </section>
+
+
+
+    <section class="bottom-part">
+        
+            <hr>
+            <a href="{{ url_for('users.register') }}">Register</a>
+        
+    </section>
+
+
+<script>
+    let record_type_select = document.getElementById('guest_signin');
+    var email_textbox = document.getElementById('email');
+    var password_textbox = document.getElementById('password');
+
+
+    function showMessage1(){
+        var email_txt= 'guest@lifebuddy.com';
+        var password_txt= 'test';
+        email_textbox.innerHTML = email_txt;
+        password_textbox.innerHTML = password_txt;
+    }
+
+</script>
+
+    {% endblock %}

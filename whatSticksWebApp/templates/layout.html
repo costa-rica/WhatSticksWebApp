@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Import the Bootstrap stylesheet -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/css/bootstrap.css') }}">
+        <!-- Bootstrap CSS needed for datatable-->
+        <link rel="stylesheet" href="../static/css/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/css/css/dataTables.bootstrap5.min.css">
+        
+
+<!-- Import our custom stylesheet -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        
+        <!--Add icon for website here-->
+        <link rel="shortcut icon" href="#">
+
+
+
+
+
+  
+    <title>{% block title %}{% endblock %}</title>
+</head>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+{% endwith %}
+<body>
+    <div class="navbar">
+        <div class="container">
+            <a class="logo" href="#">
+                <a href="https://thegoodeconomist.com">
+                    <img id="lb-logo" class="lb-logo" src="../static/images/thegoodeconomistlogo20210322.png" alt="LB logo">
+                </a>
+                
+            </a>
+            {% if current_user.is_authenticated %}
+            <div> <h2>{{ current_user.username }}</h2>
+                <small>(is currently signed in)</small>
+            </div>
+            {% endif %}
+
+            <img id="mobile-cta" class="mobile-menu" src="../static/images/menu.svg" alt="Open Navigation">
+            <nav>
+                
+                <ul id="nav_horizontal_list">
+                    {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('users.logout') }}">Logout</a></li>                    
+                    <li><a href="{{ url_for('users.home') }}">Home</a></li>
+                    <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>                    
+                    {% else %}
+                    <li><a href="{{ url_for('users.login') }}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            
+
+        </div>
+    </div>
+    {% block main %}{% endblock %}
+
+
+
+
+	{% block script %}{% endblock %}
+
+
+</body>
+</html>
+
+
+
+
+    

@@ -1,0 +1,230 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;0,900;1,300&display=swap");
+body {
+  background: #7fa0bd;
+  margin: 0;
+  font-family: Roboto;
+}
+
+.navbar {
+  /*Production*/
+  background: #f1b40b;
+  /*for dev 
+    background: rgb(241, 180, 11);*/
+  /*for dev 
+    background: rgb(241, 180, 11);*/
+  padding: 2em;
+}
+
+.navbar img.lb-logo {
+  /*width: 230px;*/
+  height: 230px;
+  margin: -240px 0 -140px -520px;
+  /*top, _ bottom right left side*/
+}
+
+.navbar ul#nav_horizontal_list li {
+  list-style-type: none;
+  float: right;
+  display: inline;
+  padding-left: 1em;
+}
+
+img.mobile-menu {
+  display: none;
+}
+
+.wider_input_login {
+  width: 300px;
+}
+
+/*Login*/
+section.LoginSection {
+  padding: 100px 10px 100px 5px;
+}
+
+section.LoginSection .container .login_as_guest {
+  background-color: #c3e9e7;
+  border-radius: 3em;
+  width: 150px;
+  padding-left: 10px;
+}
+
+/*HOME*/
+section.Home {
+  padding: 100px 10px 100px 5px;
+}
+
+section.Home .home_link_list_div {
+  background-color: tan;
+  border-radius: 3em;
+  border: 1px solid #dddddd;
+  border-color: #b3adad;
+  border-width: .5em;
+  padding: 10px 0 10px 10px;
+  margin: 0 0 0 30px;
+}
+
+section.Home .home_link_list {
+  list-style-type: none;
+  font-size: larger;
+}
+
+/*Dashboard*/
+section.dashboard {
+  padding: 100px 10px 100px 5px;
+  /*Delete modal*/
+}
+
+section.dashboard .current_chart_div {
+  margin: 50px 0 0 0;
+  width: 1000px;
+  height: 500px;
+  background-color: #77b378;
+  border-radius: 3em;
+  border: 1px solid #dddddd;
+  border-color: #b3adad;
+  border-width: .5em;
+}
+
+section.dashboard .current_chart_div > label {
+  padding: 5px 0 0 30px;
+}
+
+section.dashboard .bokeh_div {
+  padding-left: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 1.5em;
+}
+
+section.dashboard .enter_activity {
+  margin: 80px 0 0 0;
+  border: 1px solid #dddddd;
+  background-color: tan;
+  border-radius: 3em;
+  border-color: #b3adad;
+  border-width: .5em;
+  width: 1000px;
+  height: 300px;
+}
+
+section.dashboard .enter_activity > label {
+  padding: 10px 0 0 10px;
+}
+
+section.dashboard .enter_activity_sub {
+  padding: 10px 0 0 60px;
+  margin-right: 50px;
+}
+
+section.dashboard .enter_activity_sub2 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 13% auto;
+      grid-template-columns: 13% auto;
+}
+
+section.dashboard .btn_right {
+  float: right;
+  margin-right: 150px;
+}
+
+section.dashboard .modal_header_add {
+  background-color: #b3adad;
+  border-bottom: 0 none;
+}
+
+section.dashboard .modal_body_add {
+  background-color: tan;
+}
+
+section.dashboard .modal-footer {
+  border-top: 0 none;
+}
+
+section.dashboard .btn_blue1 {
+  background-color: #35a2c8;
+  border-color: #aaaaaa;
+  border-width: .3em;
+}
+
+section.dashboard .btn_green1 {
+  background-color: #35c8a2;
+  border-color: #aaaaaa;
+  border-width: .3em;
+}
+
+section.dashboard .buttons {
+  margin-top: 20px;
+  margin-left: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 800px;
+}
+
+section.dashboard .timeline_records_div {
+  margin: 50px 0 0 0;
+  width: 1000px;
+  height: 600px;
+  background-color: #77b378;
+  border-radius: 3em;
+  border: 1px solid #dddddd;
+  border-color: #b3adad;
+  border-width: .5em;
+}
+
+section.dashboard .timeline_records_div > label {
+  padding: 5px 0 0 30px;
+}
+
+section.dashboard .table_contents {
+  font-size: .7em;
+  background: #77b3af;
+  margin: 0 0 0 20px;
+  padding: 3px;
+  border-color: #525252;
+  border-style: solid;
+  border-width: 1px;
+  width: 95%;
+}
+
+section.dashboard .dash_id_button:hover {
+  background: #E54E4E;
+  background-size: contain;
+  padding: 3px 7px 5px;
+  top: -5px;
+  right: -5px;
+}
+
+section.dashboard .hide_textbox {
+  display: none;
+}
+
+section.dashboard .modal_header_delete {
+  background-color: #b3adad;
+  border-bottom: 0 none;
+}
+
+section.dashboard .modal_body_delete {
+  background-color: tan;
+}
+
+section.dashboard .delete_button {
+  float: right;
+  background-color: #c03737;
+  border: none;
+}
+
+/*Upload Health Data*/
+section.upload_health_data {
+  padding: 100px 10px 100px 5px;
+}
+
+section.upload_health_data .input_1 {
+  width: 15%;
+}
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,212 @@
+{% extends "layout.html" %}
+{% block title %} WSH Dashboard {% endblock %}
+{% block main %}
+
+
+<section class="dashboard">
+    <div class="container">
+        
+            <h1>What-Sticks Dashboard</h1>
+            <div class="current_chart_div">
+                <label><h3>Personal Timeline</h3></label>
+                <div class="bokeh_div">
+                    {{ div1|safe }}
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="btn btn-primary btn_blue1" data-bs-toggle="modal" data-bs-target="#activityModal">
+                    Add Activity
+                </button>
+                <form method="POST">
+                    <button type="submit" class="btn btn-primary btn_green1" name="submit_upload_health" value=True>
+                        Upload Health Data
+                    </button>
+                </form>
+
+
+                <button type="button" class="btn btn-primary btn_blue1" data-bs-toggle="modal" data-bs-target="#weightModal">
+                    Add Weight
+                </button>
+            </div>
+
+    <form method="POST" action="" enctype="multipart/form-data">
+    <!-- Modal -->
+      <div class="modal fade" id="activityModal" tabindex="-1" aria-labelledby="activityModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content ">
+            <div class="modal-header modal_header_add">
+              <h5 class="modal-title" id="activityModalLabel">Enter Activity</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modal_body_add">
+                <div class="enter_activity_sub">
+                    <div>
+                        <label>Date:</label>
+                        <input type="date" value="{{ default_date }}" name="activity_date">
+                        <label>Time:</label>
+                        <input type="time" value="{{ default_time }}" name="activity_time">
+                    </div>
+                    <div class="enter_activity_sub2">
+                        <label>Activity:</label>
+                        <input type="text" placeholder="required (30 char max)" name="var_activity">
+                    </div>
+                    <div class="enter_activity_sub2">
+                        <label>Activity Notes:</label>
+                        <textarea  name="activity_notes" rows=2  placeholder="optional"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer modal_body_add">
+                <button type="submit" class="btn btn-primary" name="submit_activity" value=True>
+                    Submit Activity
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+      
+    <form method="POST" action="" enctype="multipart/form-data">
+    <!-- Modal Weight -->
+        <div class="modal fade" id="weightModal" tabindex="-1" aria-labelledby="weightModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+                <div class="modal-header modal_header_add">
+                <h5 class="modal-title" id="weightModalLabel">Enter Weight</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modal_body_add">
+                    <div class="enter_activity_sub">
+                        <div>
+                            <label>Date:</label>
+                            <input type="date" value="{{ default_date }}" name="activity_date">
+                            <label>Time:</label>
+                            <input type="time" value="{{ default_time }}" name="activity_time">
+                        </div>
+                        <div class="enter_activity_sub2">
+                            <label>Weight (lbs):</label>
+                            <input type="text" name="metric3_weight">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal_body_add">
+                    <button type="submit" class="btn btn-primary" name="submit_activity" value=True>
+                        Submit Activity
+                    </button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </form>
+
+
+        <form method="POST" action="" enctype="multipart/form-data">
+            <div class="timeline_records_div">
+                <label><h3>Timeline Records</h3></label>
+                {% if no_hits_flag %}
+                No Timeline records found
+                {% else %}
+
+                <div class="table_contents">
+                    <table id="proxies" class="display table nowrap responsive" style="width:90%">
+                        <thead>
+                            <tr>
+                                {% for i in column_names %}
+                                <th>{{ i }}</th>
+                                {% endfor %}
+ 
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for row in table_data %}
+                            <tr>
+                                <td>
+                                    <button type="button" class="dash_id_button"
+                                     data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="{{ row[0] }}">{{ row[0] }}</button>
+                                </td>
+                                
+                                {% for i in range(1,len(row)) %}
+                                    <td ><div class="td_characteristics">
+                                        {{ row[i] }}
+                                    </div></td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+            </div>
+
+
+    <!-- Modal Delete -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header modal_header_delete">
+              <h5 class="modal-title" id="exampleModalLabel">Doesn't show up</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modal_body_delete">
+                <button type="submit" class="btn btn-primary delete_button" id="yes_delete" name="delete_button">Yes, delete</button>
+                <input type="text" class="form-control hide_textbox" id="recipient-name" name="delete_record_id">
+            </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+        </form>
+
+    </div>
+</section>
+
+<!--Delete modal read record id-->
+<script>
+var exampleModal = document.getElementById('exampleModal')
+exampleModal.addEventListener('show.bs.modal', function (event) {
+  // Button that triggered the modal
+  var button = event.relatedTarget
+  // Extract info from data-bs-* attributes
+  var recipient = button.getAttribute('data-bs-whatever')
+  // If necessary, you could initiate an AJAX request here
+  // and then do the updating in a callback.
+  //
+  // Update the modal's content.
+  var modalTitle = exampleModal.querySelector('.modal-title')
+  var modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+  modalTitle.textContent = 'Delete record ' + recipient +'?'
+  modalBodyInput.value = recipient
+
+});
+</script>
+
+<!-- Datatable -->
+<script src="../static/js/jquery-3.1.1.slim.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../static/css/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="../static/css/css/responsive.dataTables.min.css">
+<script src="../static/js/moment.min.js"></script>
+<script type="text/javascript" src="../static/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="../static/js/datetime.js"></script>
+<script type="text/javascript" src="../static/js/jquery.dataTables-1.11.0.min.js"></script>
+
+<script type="text/javascript">
+    $('#proxies').DataTable({"aaSorting": []});
+</script>
+
+
+<!--Modal scripts-->
+<script src="../static/js/bootstrap.min.js"></script>
+
+
+<script src="{{ cdn_js[0] }}" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    Bokeh.set_log_level("info");
+</script>
+
+{{ script1|safe }}
+{% endblock %}

@@ -1,0 +1,7 @@
+__pycache__/
+whatSticksWebApp/__pycache__/
+*.zip
+*log.txt
+misc_not_for_git/
+Untitled*
+.ipynb_checkpoints/

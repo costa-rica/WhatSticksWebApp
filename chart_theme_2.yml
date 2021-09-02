@@ -1,0 +1,9 @@
+attrs:
+    Figure:
+        background_fill_color: '#77b3af'
+        border_fill_color: '#77b378'
+        outline_line_color: '#444444'
+    Grid:
+        grid_line_alpha: .2
+    Title:
+        text_color: "white"

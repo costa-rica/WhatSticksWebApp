@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% block title %} Register {% endblock %}
+{% block main %}
+    <section class="RegisterSection">
+        <div class="container">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <h2>Register Here</h2>
+
+                <div class="form-elements">
+                    <div class="email-label">
+                        {{ form.username.label(class="") }}
+                    </div>
+                    <div class="email-input">
+                        {% if form.username.errors %}
+                        {{ form.username(class="wider_input_login") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.username(class="wider_input_login") }}
+                        {% endif %}
+                    </div>
+                    
+                    <div class="email-label">
+                        {{ form.email.label(class="") }}
+                    </div>
+                    <div class="email-input">
+                        {% if form.email.errors %}
+                        {{ form.email(class="wider_input_login") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.email(class="wider_input_login") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="password-label">
+                        {{ form.password.label(class="") }}
+                    </div>
+                    <div class="password-input">
+                        {% if form.password.errors %}
+                        {{ form.password(class="wider_input_login") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.password(class="wider_input_login") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="confirm_password-label">
+                        {{ form.confirm_password.label(class="") }}
+                    </div>
+                    <div class="confirm_password-input">
+                        {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="wider_input_login") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.confirm_password(class="wider_input_login") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-submit">
+                        {{ form.submit(class="submit-button2") }}
+                    </div>
+
+
+                </div>
+               
+            
+            </form>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %} WSH Upload Data {% endblock %}
+{% block main %}
+
+<section class="upload_health_data">
+    <div class="container">
+        <form method="POST" action="" enctype="multipart/form-data">
+            
+            <h1>What-Sticks Upload Health Data</h1>
+
+            <div class="">
+                
+            </div>
+            <div class="">
+                Data Upload Type:
+                <input type="text" class="form-control input_1" name="upload_type"  list="upload_type_list">
+                <datalist id="upload_type_list">
+                        <option>Polar Flow</option>
+                </datalist>
+            </div>
+
+
+            <input type="file" class="form-control" name="uploaded_file"/><br/>
+            <button type="submit" class="btn btn-primary" name="upload_file_button" value=True>Upload</button><br/>
+            
+        </form>
+    </div>
+</section>
+{% endblock %}
